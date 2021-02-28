@@ -7,11 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # Airport.delete_all
 
-airports = ["NYC","SFO"]
-
-airports.each do |airport|
-Airport.create(code: airport)
-end
+airports = Airport.create([
+  { code: 'SFO' },
+  { code: 'NYC' }
+])
 
 flights = Flight.create([
   { from_airport_id: airports.first.id, to_airport_id: airports.last.id, duration: 320, scheduled_on: "2021-10-21 07:00:00"},
