@@ -3,9 +3,8 @@ class FlightsController < ApplicationController
         @flights = Flight.all
         @airport_options = Airport.all.map {|airport| [airport.code, airport.id]}
         @passenger_options = [['1',1],['2',2],['3',3],['4',4]]
-        @year_options = Flight.all.map { |flight| flight.scheduled_on.year }.uniq
-        @month_options = Flight.all.map { |flight| flight.scheduled_on.month }.uniq
-        @day_options = Flight.all.map { |flight| flight.scheduled_on.day }.uniq
+        @datetime_options = Flight.all.map {|flight| [flight.scheduled_on.strftime("%m/%d/%Y"), flight.scheduled_on ]}.uniq
+        @available_flights = Flight.where(from_airport_id: params[:from_airport_id], to_airport_id: params[:to_airport_id], scheduled_on: params[:scheduled_on])
       end
     
       def new
