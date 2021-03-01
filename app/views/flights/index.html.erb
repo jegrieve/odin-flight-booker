@@ -1,8 +1,8 @@
 <%= form_with(url: "/flights", method: :get, local: true) do |f| %>
-<%= select_tag(:from_airport_id, options_for_select(@airport_options)) %>
-<%= select_tag(:to_airport_id, options_for_select(@airport_options)) %>
-<%= select_tag(:num_passengers, options_for_select(@passenger_options)) %>
-<%= select_tag(:scheduled_on, options_for_select(@datetime_options)) %>
+<%= select_tag(:from_airport_id, options_for_select(@airport_options, selected: params[:from_airport_id]), prompt: "From") %>
+<%= select_tag(:to_airport_id, options_for_select(@airport_options, selected: params[:to_airport_id]), prompt: "To") %>
+<%= select_tag(:num_passengers, options_for_select(@passenger_options, selected: params[:num_passengers]), prompt: "Num Passengers") %>
+<%= select_tag(:scheduled_on, options_for_select(@datetime_options, selected: params[:scheduled_on]), prompt: "Date") %>
 <%= f.submit "Search for flight" %>
 <% end %>
 
