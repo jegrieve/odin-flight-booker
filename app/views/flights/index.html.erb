@@ -5,3 +5,16 @@
 <%= select_tag(:scheduled_on, options_for_select(@datetime_options)) %>
 <%= f.submit "Search for flight" %>
 <% end %>
+
+<% if @available_flights.any? %>
+    <% @available_flights.each do |flight| %>
+        Departing from: <%= Airport.find(flight.from_airport_id).code %>
+        Arriving at: <%= Airport.find(flight.to_airport_id).code %>
+        Duration: <%= flight.duration.to_s + "mins" %>
+        Date: <%= flight.scheduled_on.strftime("%m/%d/%Y") %>
+        Time: <%= flight.scheduled_on.strftime("%H:%M") %>
+        <% end %>
+        <% else %>
+  There are no available flights on the selected date
+<% end %>
+
