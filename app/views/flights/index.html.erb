@@ -6,14 +6,22 @@
 <%= f.submit "Search for flight" %>
 <% end %>
 
+
 <% if @available_flights.any? %>
+  <%= form_with(url: "/bookings/new", method: :get, local: true) do |f| %>
     <% @available_flights.each do |flight| %>
         Departing from: <%= Airport.find(flight.from_airport_id).code %>
         Arriving at: <%= Airport.find(flight.to_airport_id).code %>
         Duration: <%= flight.duration.to_s + "mins" %>
         Date: <%= flight.scheduled_on.strftime("%m/%d/%Y") %>
         Time: <%= flight.scheduled_on.strftime("%H:%M") %>
+        <%= radio_button_tag(:flight_info, flight.id) %>
         <% end %>
+        <div>
+        <%= hidden_field_tag(:num_passengers, params[:num_passengers]) %>
+        <%= f.submit "Book flight" %>
+        </div>
+  <% end %>
         <% else %>
   There are no available flights on the selected date
 <% end %>
