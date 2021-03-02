@@ -1,0 +1,14 @@
+<h1> Booking Confirmation </h1>
+Your booking number is <%= @booking.id %>
+<div>
+Departing from <%= @booking.flight.from_airport.code %> on <%= @booking.flight.scheduled_on.strftime('%m/%d/%Y') %>
+and arriving at <%= @booking.flight.to_airport.code %>
+</div>
+<div>
+<% @booking.passengers.each_with_index do |passenger,i | %>
+Passenger <%= i + 1 %>: Name: <%= passenger.name %> Email: <%= passenger.email %>
+<% end %>
+</div>
+
+
+<%= link_to 'Search for other flights', root_path %> 

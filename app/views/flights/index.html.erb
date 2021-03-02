@@ -15,7 +15,7 @@
         Duration: <%= flight.duration.to_s + "mins" %>
         Date: <%= flight.scheduled_on.strftime("%m/%d/%Y") %>
         Time: <%= flight.scheduled_on.strftime("%H:%M") %>
-        <%= radio_button_tag(:flight_info, flight.id) %>
+        <%= radio_button_tag(:flight_id, flight.id) %>
         <% end %>
         <div>
         <%= hidden_field_tag(:num_passengers, params[:num_passengers]) %>

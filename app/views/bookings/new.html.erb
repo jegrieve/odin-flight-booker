@@ -3,9 +3,10 @@ From: <%= @selected_flight.from_airport.code  %>
 To: <%= @selected_flight.to_airport.code %>
 On: <%=@selected_flight.scheduled_on.strftime("%m/%d/%Y") %>
 
+
 <%= form_with model: @booking, local: true do |f| %>
-    <%= f.fields_for :passengers do |passenger_data| %>
     <% i = 1 %>
+    <%= f.fields_for :passengers do |passenger_data| %>
     <%= "Passenger #{i} information" %>
     <div>
     <%= f.label :name %>
@@ -17,6 +18,7 @@ On: <%=@selected_flight.scheduled_on.strftime("%m/%d/%Y") %>
     </div>
     <% i += 1 %>
     <% end %>
+    <%= f.hidden_field :flight_id, value: @selected_flight.id %>
     <%= f.submit %>
 <% end %> 
 
